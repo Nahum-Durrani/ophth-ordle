@@ -51,15 +51,14 @@ export default function SiteMenu() {
             >
               ✕
             </button>
+            <MenuLink href="/" onClick={() => setPanel(null)}>
+              Home
+            </MenuLink>
             <MenuItem onClick={() => setPanel("how-to-play")}>How to Play</MenuItem>
             <MenuItem onClick={() => setPanel("stats")}>Stats</MenuItem>
-            <Link
-              href="/team"
-              onClick={() => setPanel(null)}
-              className="rounded-lg px-3 py-2.5 text-left font-display text-sm font-semibold text-white hover:bg-white/10"
-            >
+            <MenuLink href="/team" onClick={() => setPanel(null)}>
               Meet the Team
-            </Link>
+            </MenuLink>
           </div>
           <div className="flex-1 bg-pupil/40" />
         </div>
@@ -91,5 +90,25 @@ function MenuItem({ onClick, children }: { onClick: () => void; children: React.
     >
       {children}
     </button>
+  );
+}
+
+function MenuLink({
+  href,
+  onClick,
+  children,
+}: {
+  href: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="rounded-lg px-3 py-2.5 text-left font-display text-sm font-semibold text-white hover:bg-white/10"
+    >
+      {children}
+    </Link>
   );
 }
