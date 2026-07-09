@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* Clue reveal: comes into focus like a slit-lamp finding */
@@ -31,6 +31,15 @@
 }
 
 :focus-visible {
-  outline: 2px solid #f2b84b;
+  outline: 2px solid #c1442d;
   outline-offset: 2px;
+}
+
+/* Amsler grid: the fine-line reference patients stare at to spot macular
+   distortion — same instrument the AMD case's own teaching points mention. */
+.field-grid {
+  background-image:
+    linear-gradient(to right, rgba(18, 22, 28, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 22, 28, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
 }

@@ -1,4 +1,4 @@
-# Ophthodle
+# Ophth-ordle
 
 Daily ophthalmology diagnosis game — Doctordle-style. One clinical case a day,
 five progressive clues, five guesses. Built with Next.js 14, TypeScript, and Tailwind.
@@ -33,7 +33,7 @@ Push to GitHub, import the repo in Vercel, done. No env vars, no database.
 ## Before launch
 
 - [ ] Set `EPOCH` in `lib/game.ts` to the real launch date.
-- [ ] Rename "Ophthodle" if you pick a different name (grep for it).
+- [ ] Rename "Ophth-ordle" if you pick a different name (grep for it).
 - [ ] Update the share URL in `shareText()` once the domain is final.
 
 ## Notes

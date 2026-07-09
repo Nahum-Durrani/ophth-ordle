@@ -5,11 +5,9 @@ import { AnswerEntry, MAX_GUESSES, searchAnswers } from "@/lib/game";
 
 export default function GuessInput({
   onSubmit,
-  previousGuesses,
   attempt,
 }: {
   onSubmit: (guess: string) => void;
-  previousGuesses: string[];
   attempt: number;
 }) {
   const [query, setQuery] = useState("");
@@ -55,20 +53,7 @@ export default function GuessInput({
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      {previousGuesses.length > 0 && (
-        <ul className="flex flex-col gap-1.5" aria-label="Previous guesses">
-          {previousGuesses.map((g, i) => (
-            <li
-              key={i}
-              className="rounded-lg border border-wrong/40 bg-wrong/10 px-3 py-2 text-sm text-wrong line-through"
-            >
-              {g}
-            </li>
-          ))}
-        </ul>
-      )}
-
+    <div className="flex flex-col gap-2">
       <div ref={boxRef} className="relative">
         <input
           type="text"
@@ -83,13 +68,13 @@ export default function GuessInput({
           aria-label="Type your diagnosis"
           autoComplete="off"
           spellCheck={false}
-          className="w-full rounded-xl border border-line bg-raised px-4 py-3 text-sm text-paper placeholder:text-fog focus:border-beam focus:outline-none"
+          className="w-full rounded-xl border border-line bg-mist px-4 py-3 text-sm text-pupil placeholder:text-vitreous focus:border-reflex focus:outline-none"
         />
 
         {open && results.length > 0 && (
           <ul
             role="listbox"
-            className="absolute z-10 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-line bg-raised shadow-xl"
+            className="absolute z-10 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-line bg-card shadow-lg"
           >
             {results.map((r, i) => (
               <li key={r.label + i} role="option" aria-selected={i === highlighted}>
@@ -98,12 +83,12 @@ export default function GuessInput({
                   onMouseEnter={() => setHighlighted(i)}
                   onClick={() => choose(r)}
                   className={`block w-full px-4 py-2.5 text-left text-sm ${
-                    i === highlighted ? "bg-beam/15 text-beam" : "text-paper/90"
+                    i === highlighted ? "bg-reflex/10 text-reflex" : "text-pupil/90"
                   }`}
                 >
                   {r.label}
                   {r.label !== r.canonical && (
-                    <span className="ml-2 text-xs text-fog">→ {r.canonical}</span>
+                    <span className="ml-2 text-xs text-vitreous">→ {r.canonical}</span>
                   )}
                 </button>
               </li>
@@ -111,7 +96,7 @@ export default function GuessInput({
           </ul>
         )}
       </div>
-      <p className="text-xs text-fog">
+      <p className="text-xs text-vitreous">
         A wrong guess reveals the next clue. Full names and common abbreviations both count.
       </p>
     </div>

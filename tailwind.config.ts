@@ -5,18 +5,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0B1220",       // darkened exam room
-        surface: "#141E31",
-        raised: "#1C2A42",
-        line: "#2A3A57",
-        fog: "#8B99B0",
-        paper: "#E9EEF6",
-        beam: "#F2B84B",      // slit-lamp amber
-        correct: "#3FC98F",
-        wrong: "#E4604E",
+        // Perimetry palette — rooted in the ophthalmoscope exam, not generic medicine.
+        field: "#F2F3F5", // page background: the pale gray of a printed visual-field chart
+        card: "#FFFFFF",
+        mist: "#F7F8FA", // subtle raised surface: inputs, unrevealed clue placeholders
+        pupil: "#12161C", // primary text
+        vitreous: "#6B7480", // secondary text, hairline borders
+        line: "#DCE0E4",
+        reflex: "#C1442D", // primary accent: the ophthalmoscope's red reflex
+        fluorescein: "#9FCB3B", // correct — corneal fluorescein stain, fills only
+        "fluorescein-ink": "#5C7A1E", // correct — AA-contrast text/icon variant
+        hyphema: "#96312E", // wrong — blood in the anterior chamber
       },
       fontFamily: {
-        display: ["'Space Grotesk'", "'Segoe UI'", "system-ui", "sans-serif"],
+        // Headlines/labels: JetBrains Mono, the same face for both keys — a
+        // deliberate instrument-readout accent, used narrowly.
+        display: ["var(--font-mono)", "'SFMono-Regular'", "monospace"],
+        mono: ["var(--font-mono)", "'SFMono-Regular'", "monospace"],
+        // Prose: the OS's own font. No custom body face to load or justify.
         body: ["system-ui", "-apple-system", "'Segoe UI'", "sans-serif"],
       },
     },

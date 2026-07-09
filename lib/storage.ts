@@ -14,8 +14,8 @@ export interface Stats {
   dist: number[];
 }
 
-const DAY_KEY = "ophthodle:day";
-const STATS_KEY = "ophthodle:stats";
+const DAY_KEY = "ophth-ordle:day";
+const STATS_KEY = "ophth-ordle:stats";
 
 const emptyStats: Stats = {
   played: 0,

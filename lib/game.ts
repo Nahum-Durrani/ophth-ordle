@@ -80,7 +80,7 @@ export function shareText(
   num: number,
   guesses: number,
   won: boolean,
-  siteUrl = "ophthodle.vercel.app"
+  siteUrl = "ophth-ordle.vercel.app"
 ): string {
   const rows = Array.from({ length: MAX_GUESSES }, (_, i) => {
     if (won && i === guesses - 1) return "🟩";
@@ -88,5 +88,5 @@ export function shareText(
     return "⬛";
   }).join("");
   const score = won ? `${guesses}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
-  return `Ophthodle #${num + 1} ${score}\n${rows}\n${siteUrl}`;
+  return `Ophth-ordle #${num + 1} ${score}\n${rows}\n${siteUrl}`;
 }
