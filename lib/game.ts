@@ -14,8 +14,14 @@ export interface OphthoCase {
 export const ALL_CASES = cases as OphthoCase[];
 export const MAX_GUESSES = 5;
 
-/** Launch date — day 0 of the puzzle calendar. Change before going live. */
-export const EPOCH = new Date("2026-08-01T00:00:00");
+/**
+ * Launch date — day 0 of the puzzle calendar. Before this date, puzzleNumber()
+ * clamps to 0, so every visitor sees case #1 no matter what day it is — that's
+ * expected during development/staging. Once real players are seeing this, do
+ * NOT change EPOCH again: shifting it re-numbers every day's case for
+ * everyone (breaks streaks, changes what "today's case" means retroactively).
+ */
+export const EPOCH = new Date("2026-07-15T00:00:00");
 
 /** Days elapsed since launch, in the player's local timezone. */
 export function puzzleNumber(now: Date = new Date()): number {
@@ -80,6 +86,7 @@ export function shareText(
   num: number,
   guesses: number,
   won: boolean,
+  // TODO: placeholder domain — swap for the real Vercel URL after first deploy.
   siteUrl = "ophth-ordle.vercel.app"
 ): string {
   const rows = Array.from({ length: MAX_GUESSES }, (_, i) => {

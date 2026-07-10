@@ -31,7 +31,7 @@
 }
 
 :focus-visible {
-  outline: 2px solid #c1442d;
+  outline: 2px solid #0047ab;
   outline-offset: 2px;
 }
 
@@ -42,4 +42,12 @@
     linear-gradient(to right, rgba(18, 22, 28, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(18, 22, 28, 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
+}
+
+/* Ishihara-plate texture: a pseudoisochromatic dot field. Used as a second,
+   non-color channel behind data fills (guess distribution) so meaning
+   never rests on hue alone. */
+.ishihara-dots {
+  background-image: radial-gradient(currentColor 1px, transparent 1.6px);
+  background-size: 6px 6px;
 }

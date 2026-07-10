@@ -9,7 +9,7 @@ export interface TeamMember {
 export const TEAM: TeamMember[] = [
   {
     name: "Nahum Durrani",
-    role: "Creator & Developer",
+    role: "Lead Developer",
     bio: "Software engineering student at York University. Built and maintains Ophth-ordle.",
     initials: "ND",
   },

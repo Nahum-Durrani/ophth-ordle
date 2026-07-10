@@ -14,7 +14,9 @@ export default function GuessDistribution({
           <span className="w-3 text-right font-mono text-xs text-vitreous">{i + 1}</span>
           <div className="h-5 flex-1 rounded bg-mist">
             <div
-              className={`h-full rounded ${i === highlight ? "bg-fluorescein" : "bg-vitreous/40"}`}
+              className={`ishihara-dots h-full rounded ${
+                i === highlight ? "bg-fluorescein text-fluorescein-ink/30" : "bg-vitreous/40 text-pupil/10"
+              }`}
               style={{ width: count ? `${Math.max((count / max) * 100, 8)}%` : 0 }}
             />
           </div>

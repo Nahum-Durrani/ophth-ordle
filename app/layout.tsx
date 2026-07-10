@@ -14,10 +14,23 @@ const mono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+const title = "Ophth-ordle — Daily Ophthalmology Diagnosis Game";
+const description =
+  "One clinical case a day. Five clues, five guesses. Sharpen your ophthalmology diagnostic reasoning.";
+
 export const metadata: Metadata = {
-  title: "Ophth-ordle — Daily Ophthalmology Diagnosis Game",
-  description:
-    "One clinical case a day. Five clues, five guesses. Sharpen your ophthalmology diagnostic reasoning.",
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

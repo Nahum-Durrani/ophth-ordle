@@ -7,13 +7,12 @@ import ClueCard from "./ClueCard";
 import GuessInput from "./GuessInput";
 import GuessHistory from "./GuessHistory";
 import FieldMapDial, { SectorState } from "./FieldMapDial";
-import ResultModal from "./ResultModal";
+import ResultBanner from "./ResultBanner";
 
 export default function Game() {
   const num = useMemo(() => puzzleNumber(), []);
   const c = useMemo(() => todaysCase(), []);
   const [state, setState] = useState<DayState | null>(null);
-  const [dismissed, setDismissed] = useState(false);
 
   // Load persisted state on the client only (avoids SSR/localStorage mismatch)
   useEffect(() => {
@@ -56,17 +55,17 @@ export default function Game() {
     <div className="w-full max-w-2xl rounded-2xl border border-line bg-card shadow-sm">
       <div className="flex flex-col gap-5 p-6 sm:p-8">
         <div className="flex items-center justify-between">
-          <div className="flex gap-2 text-xs">
-            <span className="rounded-full border border-line bg-mist px-3 py-1 text-vitreous">
+          <div className="flex gap-2">
+            <span className="rounded-full border border-line bg-mist px-2.5 py-1 text-meta font-medium uppercase text-vitreous">
               {c.category}
             </span>
             <span
-              className={`rounded-full border border-line bg-mist px-3 py-1 ${
+              className={`rounded-full border border-line bg-mist px-2.5 py-1 text-meta font-medium uppercase ${
                 c.difficulty === "Easy"
                   ? "text-fluorescein-ink"
                   : c.difficulty === "Hard"
                     ? "text-hyphema"
-                    : "text-reflex"
+                    : "text-cobalt"
               }`}
             >
               {c.difficulty}
@@ -78,44 +77,25 @@ export default function Game() {
           />
         </div>
 
-        <ol className="flex flex-col gap-3" aria-label="Case clues">
+        <ol className="flex flex-col gap-5" aria-label="Case findings">
           {c.clues.map((clue, i) => (
-            <ClueCard key={i} index={i} text={clue} revealed={i < cluesShown} />
+            <ClueCard key={i} text={clue} revealed={i < cluesShown} isVignette={i === 0} />
           ))}
         </ol>
 
         {state.status === "playing" ? (
           <div className="flex flex-col gap-3">
-            <GuessInput onSubmit={submitGuess} attempt={state.guesses.length + 1} />
-            <GuessHistory guesses={state.guesses} caseData={c} />
+            <GuessInput onSubmit={submitGuess} attempt={state.guesses.length + 1} caseData={c} />
+            <GuessHistory guesses={state.guesses} />
           </div>
         ) : (
-          <div className="flex flex-col gap-3">
-            <GuessHistory guesses={state.guesses} caseData={c} />
-            {dismissed && (
-              <button
-                type="button"
-                onClick={() => setDismissed(false)}
-                className="rounded-xl border border-line bg-mist px-4 py-2.5 text-sm font-semibold text-pupil hover:bg-line/40"
-              >
-                View result
-              </button>
-            )}
-          </div>
+          <ResultBanner caseData={c} puzzle={num} state={state} />
         )}
       </div>
 
       <p className="border-t border-line px-6 py-3 text-center text-[11px] text-vitreous sm:px-8">
         For medical education only. This is not medical advice.
       </p>
-
-      <ResultModal
-        open={state.status !== "playing" && !dismissed}
-        onClose={() => setDismissed(true)}
-        caseData={c}
-        puzzle={num}
-        state={state}
-      />
     </div>
   );
 }
