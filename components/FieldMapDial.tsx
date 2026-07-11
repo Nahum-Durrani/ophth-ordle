@@ -5,18 +5,18 @@ const STROKE = 5;
 function sectorColor(state: SectorState): string {
   switch (state) {
     case "correct":
-      return "#9FCB3B"; // fluorescein
+      return "#15803D"; // success
     case "wrong":
-      return "#96312E"; // hyphema
+      return "#B91C1C"; // danger
     default:
-      return "#DCE0E4"; // line
+      return "#E5E7EB"; // border
   }
 }
 
 /**
- * A perimetry-style field map: a ring divided into clock-hour sectors, one per
- * guess. Empty until a guess lands, then fills fluorescein-green (correct) or
- * hyphema-red (wrong) — the same visual language used for the site's mark.
+ * A ring divided into clock-hour sectors, one per guess. Empty until a guess
+ * lands, then fills success-green (correct) or danger-red (wrong) — the same
+ * visual language used for the site's mark.
  */
 export default function FieldMapDial({
   sectors,

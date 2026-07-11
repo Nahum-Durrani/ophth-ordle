@@ -26,7 +26,7 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-pupil/40 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-primary/30 p-4"
       onClick={onClose}
     >
       <div
@@ -34,17 +34,25 @@ export default function Modal({
         aria-modal="true"
         aria-label={title}
         onClick={(e) => e.stopPropagation()}
-        className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl border border-line bg-card p-6 shadow-xl"
+        className="surface-in max-h-[85vh] w-full max-w-md overflow-y-auto rounded-card border border-border bg-card p-7 shadow-floating"
       >
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-display text-lg font-bold text-pupil">{title}</h2>
+        <div className="mb-5 flex items-center justify-between">
+          <h2 className="font-display text-lg font-bold text-primary">{title}</h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="flex h-7 w-7 items-center justify-center rounded-full text-vitreous hover:bg-mist hover:text-pupil"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-muted transition-colors hover:bg-surface hover:text-primary"
           >
-            ✕
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
         </div>
         {children}

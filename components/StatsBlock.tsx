@@ -9,7 +9,7 @@ export default function StatsBlock({
   highlight?: number;
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       <dl className="flex justify-around text-center">
         <Stat label="Played" value={stats.played} />
         <Stat
@@ -20,7 +20,7 @@ export default function StatsBlock({
         <Stat label="Best" value={stats.maxStreak} />
       </dl>
       <div>
-        <h3 className="mb-2 text-xs font-bold uppercase tracking-wide text-vitreous">
+        <h3 className="mb-3 font-mono text-meta font-semibold uppercase text-muted">
           Guess distribution
         </h3>
         <GuessDistribution dist={stats.dist} highlight={highlight} />
@@ -32,8 +32,8 @@ export default function StatsBlock({
 function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div>
-      <dt className="text-[10px] uppercase tracking-wide text-vitreous">{label}</dt>
-      <dd className="font-mono text-lg font-semibold text-pupil">{value}</dd>
+      <dt className="font-mono text-[10px] uppercase tracking-wide text-muted">{label}</dt>
+      <dd className="font-display text-lg font-bold text-primary">{value}</dd>
     </div>
   );
 }

@@ -83,8 +83,8 @@ export default function GuessInput({
       : "A wrong guess reveals the next clue. Full names and common abbreviations both count.";
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <div className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <div className="flex gap-3">
         <div ref={boxRef} className="relative flex-1">
           <input
             type="text"
@@ -101,13 +101,13 @@ export default function GuessInput({
             autoComplete="off"
             spellCheck={false}
             disabled={pending}
-            className="w-full rounded-lg border border-line bg-mist px-4 py-3 text-sm text-pupil placeholder:text-vitreous focus:border-cobalt focus:outline-none disabled:opacity-60"
+            className="w-full rounded-2xl border border-border bg-surface px-4 py-3.5 text-body text-primary transition-colors placeholder:text-muted focus:border-accent focus:bg-card focus:outline-none focus:ring-2 focus:ring-accent/25 disabled:opacity-60"
           />
 
           {open && results.length > 0 && (
             <ul
               role="listbox"
-              className="absolute z-10 mt-2 max-h-64 w-full overflow-auto rounded-lg border border-line bg-card shadow-lg"
+              className="surface-in absolute z-10 mt-2 max-h-64 w-full overflow-auto rounded-2xl border border-border bg-card p-1.5 shadow-floating"
             >
               {results.map((r, i) => (
                 <li key={r.label + i} role="option" aria-selected={i === highlighted}>
@@ -115,13 +115,13 @@ export default function GuessInput({
                     type="button"
                     onMouseEnter={() => setHighlighted(i)}
                     onClick={() => trySubmit(r)}
-                    className={`block w-full px-4 py-2.5 text-left text-sm ${
-                      i === highlighted ? "bg-cobalt/10 text-cobalt" : "text-pupil/90"
+                    className={`block w-full rounded-xl px-3.5 py-2.5 text-left text-body transition-colors ${
+                      i === highlighted ? "bg-accent/10 text-accent" : "text-primary/90"
                     }`}
                   >
                     {r.label}
                     {r.label !== r.canonical && (
-                      <span className="ml-2 text-xs text-vitreous">→ {r.canonical}</span>
+                      <span className="ml-2 text-meta text-muted">→ {r.canonical}</span>
                     )}
                   </button>
                 </li>
@@ -133,7 +133,7 @@ export default function GuessInput({
         <button
           type="submit"
           disabled={pending}
-          className="shrink-0 rounded-lg bg-cobalt px-4 py-3 font-display text-sm font-bold text-white hover:brightness-110 disabled:opacity-50"
+          className="shrink-0 rounded-2xl bg-primary px-5 py-3.5 font-display text-sm font-bold text-white transition-colors hover:bg-secondary disabled:opacity-50"
         >
           Submit
         </button>
@@ -142,7 +142,7 @@ export default function GuessInput({
       <p
         key={pending ? "pending" : error ? "error" : "idle"}
         aria-live="polite"
-        className={`clue-reveal text-xs ${pending || error ? "text-hyphema" : "text-vitreous"}`}
+        className={`clue-reveal text-xs ${pending || error ? "text-danger" : "text-muted"}`}
       >
         {helperText}
       </p>

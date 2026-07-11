@@ -1,10 +1,27 @@
-# Ophth-ordle — Design System (MASTER)
+# Ophth-ordle — Design System (MASTER) — SUPERSEDED 2026-07-10
+
+**This document no longer describes the live design system.** On
+2026-07-10 the user explicitly requested a full pivot away from the
+"Perimetry" instrument concept this file documents, toward a restrained
+editorial/premium-SaaS direction (Linear/Stripe/Notion-adjacent, crossed
+with a medical-journal calm) — new palette (slate/teal/success/warning/
+danger), new type system (Manrope/Inter/IBM Plex Mono), no Amsler-grid
+texture, motion now applied everywhere instead of being mostly withheld.
+The current system is documented in `CLAUDE.md` → "Design direction."
+
+This file is kept as a historical record of the Perimetry concept's
+rationale (why claymorphism/generic-SaaS/pink-purple were rejected, the
+contrast math, the anti-pattern list) — worth reading if a future session
+ever needs to understand *why* those earlier choices were made, but **don't
+implement anything from it**. If in doubt, `CLAUDE.md` wins.
+
+---
 
 Generated via the `ui-ux-pro-max` skill's `--design-system` search, then
 **overridden by hand** because the generator's product-category match is
-wrong for this project. This file is the source of truth; nothing gets
-implemented until the user signs off on it. Presentation only — this file
-never governs `lib/game.ts`, `lib/storage.ts`, or `data/`.
+wrong for this project. This file was the source of truth prior to the
+2026-07-10 pivot above. Presentation only — this file never governed
+`lib/game.ts`, `lib/storage.ts`, or `data/`.
 
 ---
 

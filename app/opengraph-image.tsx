@@ -5,10 +5,10 @@ export const alt = "Ophth-ordle — Daily Ophthalmology Diagnosis Game";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// The share-card mark: concentric iris rings closing toward a cobalt
-// reflex — Satori (next/og's renderer) rejects the segmented conic-gradient
-// FieldMapDial uses, so this redraws the same "iris geometry" idea as
-// nested bordered circles, which Satori's CSS subset supports natively.
+// The share-card mark: concentric rings closing toward a slate center —
+// Satori (next/og's renderer) rejects the segmented conic-gradient
+// FieldMapDial uses, so this redraws the same ring geometry as nested
+// bordered circles, which Satori's CSS subset supports natively.
 export default async function OpengraphImage() {
   return new ImageResponse(
     (
@@ -18,10 +18,7 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          backgroundColor: "#F2F3F5",
-          backgroundImage:
-            "linear-gradient(to right, rgba(18,22,28,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(18,22,28,0.06) 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
+          backgroundColor: "#FAFAF8",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", padding: "0 80px", gap: 72 }}>
@@ -34,7 +31,7 @@ export default async function OpengraphImage() {
               height: 260,
               borderRadius: 9999,
               flexShrink: 0,
-              border: "8px solid #DCE0E4",
+              border: "8px solid #E5E7EB",
             }}
           >
             <div
@@ -45,7 +42,7 @@ export default async function OpengraphImage() {
                 width: 196,
                 height: 196,
                 borderRadius: 9999,
-                border: "8px solid #0047AB",
+                border: "8px solid #0F766E",
               }}
             >
               <div
@@ -56,7 +53,7 @@ export default async function OpengraphImage() {
                   width: 132,
                   height: 132,
                   borderRadius: 9999,
-                  border: "8px solid #9FCB3B",
+                  border: "8px solid #15803D",
                 }}
               >
                 <div
@@ -65,12 +62,12 @@ export default async function OpengraphImage() {
                     width: 68,
                     height: 68,
                     borderRadius: 9999,
-                    backgroundColor: "#12161C",
+                    backgroundColor: "#0F172A",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <div style={{ display: "flex", width: 22, height: 22, borderRadius: 9999, backgroundColor: "#0047AB" }} />
+                  <div style={{ display: "flex", width: 22, height: 22, borderRadius: 9999, backgroundColor: "#0F766E" }} />
                 </div>
               </div>
             </div>
@@ -84,15 +81,15 @@ export default async function OpengraphImage() {
                 fontWeight: 700,
                 letterSpacing: 2,
                 textTransform: "uppercase",
-                color: "#0047AB",
+                color: "#0F766E",
               }}
             >
               Daily Ophthalmology Diagnosis Game
             </div>
-            <div style={{ display: "flex", fontSize: 96, fontWeight: 700, color: "#12161C", lineHeight: 1.05 }}>
+            <div style={{ display: "flex", fontSize: 96, fontWeight: 700, color: "#0F172A", lineHeight: 1.05 }}>
               Ophth-ordle
             </div>
-            <div style={{ display: "flex", fontSize: 30, color: "#616A75" }}>
+            <div style={{ display: "flex", fontSize: 30, color: "#6B7280" }}>
               One case a day. Five clues. Five guesses.
             </div>
           </div>

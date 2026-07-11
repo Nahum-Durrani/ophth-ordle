@@ -27,11 +27,18 @@ export default function SiteMenu() {
         type="button"
         onClick={() => setPanel("menu")}
         aria-label="Open menu"
-        className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] rounded-md hover:bg-white/10"
+        className="flex h-9 w-9 items-center justify-center rounded-lg text-secondary transition-colors hover:bg-surface"
       >
-        <span aria-hidden className="h-[2px] w-5 rounded-full bg-white" />
-        <span aria-hidden className="h-[2px] w-5 rounded-full bg-white" />
-        <span aria-hidden className="h-[2px] w-5 rounded-full bg-white" />
+        {/* Inline SVG, Lucide-matched stroke style — no icon-library dependency. */}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </button>
 
       {panel === "menu" && (
@@ -41,15 +48,23 @@ export default function SiteMenu() {
             aria-modal="true"
             aria-label="Site menu"
             onClick={(e) => e.stopPropagation()}
-            className="flex h-full w-64 flex-col gap-1 bg-pupil p-6"
+            className="surface-in flex h-full w-72 flex-col gap-1 border-r border-border bg-card p-6"
           >
             <button
               type="button"
               onClick={() => setPanel(null)}
               aria-label="Close menu"
-              className="mb-4 self-start text-lg text-white/60 hover:text-white"
+              className="mb-6 flex h-9 w-9 items-center justify-center self-start rounded-lg text-muted transition-colors hover:bg-surface hover:text-primary"
             >
-              ✕
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
             <MenuLink href="/" onClick={() => setPanel(null)}>
               Home
@@ -60,12 +75,12 @@ export default function SiteMenu() {
               Meet the Team
             </MenuLink>
           </div>
-          <div className="flex-1 bg-pupil/40" />
+          <div className="flex-1 bg-primary/20" />
         </div>
       )}
 
       <Modal open={panel === "how-to-play"} onClose={() => setPanel(null)} title="How to Play">
-        <ul className="flex flex-col gap-3 text-sm leading-relaxed text-pupil/90">
+        <ul className="flex flex-col gap-3 text-body leading-relaxed text-secondary">
           <li>Each case reveals one clue on load, ordered generic to specific.</li>
           <li>Type a diagnosis into the box — full names and common abbreviations both count.</li>
           <li>A wrong guess reveals the next clue. You get 5 guesses total.</li>
@@ -86,7 +101,7 @@ function MenuItem({ onClick, children }: { onClick: () => void; children: React.
     <button
       type="button"
       onClick={onClick}
-      className="rounded-lg px-3 py-2.5 text-left font-display text-sm font-semibold text-white hover:bg-white/10"
+      className="rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold text-primary transition-colors hover:bg-surface"
     >
       {children}
     </button>
@@ -106,7 +121,7 @@ function MenuLink({
     <Link
       href={href}
       onClick={onClick}
-      className="rounded-lg px-3 py-2.5 text-left font-display text-sm font-semibold text-white hover:bg-white/10"
+      className="rounded-xl px-3 py-2.5 text-left font-display text-sm font-bold text-primary transition-colors hover:bg-surface"
     >
       {children}
     </Link>

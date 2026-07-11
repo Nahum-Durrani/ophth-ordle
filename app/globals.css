@@ -6,48 +6,62 @@
   color-scheme: light;
 }
 
-/* Clue reveal: comes into focus like a slit-lamp finding */
-@keyframes focus-in {
+/* Clue reveal: a quiet fade + slight rise. No blur, no bounce — 220ms,
+   ease-out, matches the rest of the system's restrained motion. */
+@keyframes fade-in-up {
   from {
     opacity: 0;
-    filter: blur(6px);
-    transform: translateY(4px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    filter: blur(0);
     transform: translateY(0);
   }
 }
 
 .clue-reveal {
-  animation: focus-in 0.5s ease-out both;
+  animation: fade-in-up 220ms ease-out both;
+}
+
+/* Shared entrance for floating/overlay surfaces (dropdown, modal, drawer) —
+   fade + a very slight scale, same family as .clue-reveal, never a bounce. */
+@keyframes fade-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.surface-in {
+  animation: fade-scale-in 180ms ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .clue-reveal {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 :focus-visible {
-  outline: 2px solid #0047ab;
+  outline: 2px solid #0f766e;
   outline-offset: 2px;
 }
 
-/* Amsler grid: the fine-line reference patients stare at to spot macular
-   distortion — same instrument the AMD case's own teaching points mention. */
-.field-grid {
-  background-image:
-    linear-gradient(to right, rgba(18, 22, 28, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(18, 22, 28, 0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-/* Ishihara-plate texture: a pseudoisochromatic dot field. Used as a second,
-   non-color channel behind data fills (guess distribution) so meaning
-   never rests on hue alone. */
-.ishihara-dots {
-  background-image: radial-gradient(currentColor 1px, transparent 1.6px);
-  background-size: 6px 6px;
+/* A near-imperceptible grain over the warm background — texture, not
+   pattern. Pure CSS/SVG (inline feTurbulence data URI), no image asset. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }

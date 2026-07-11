@@ -21,8 +21,8 @@ export default function Game() {
 
   if (!state) {
     return (
-      <div className="w-full max-w-2xl rounded-2xl border border-line bg-card p-6 shadow-sm">
-        <p className="text-vitreous">Loading today's case…</p>
+      <div className="w-full max-w-2xl rounded-card border border-border bg-card p-8 shadow-card">
+        <p className="text-muted">Loading today's case…</p>
       </div>
     );
   }
@@ -51,22 +51,26 @@ export default function Game() {
     if (status !== "playing") recordResult(num, status === "won", guesses.length);
   }
 
+  // Pill badges: category is a slate outline pill, difficulty is a soft
+  // filled pill (green/amber/muted-red) — replaces the earlier borderless
+  // readout-tag treatment.
+  const difficultyPill =
+    c.difficulty === "Easy"
+      ? "bg-success/10 text-success"
+      : c.difficulty === "Hard"
+        ? "bg-danger/[0.08] text-danger/90"
+        : "bg-warning/10 text-warning";
+
   return (
-    <div className="w-full max-w-2xl rounded-2xl border border-line bg-card shadow-sm">
-      <div className="flex flex-col gap-5 p-6 sm:p-8">
+    <div className="w-full max-w-2xl overflow-hidden rounded-card border border-border bg-card shadow-card">
+      <div className="flex flex-col gap-8 p-8 sm:p-10">
         <div className="flex items-center justify-between">
-          <div className="flex gap-2">
-            <span className="rounded-full border border-line bg-mist px-2.5 py-1 text-meta font-medium uppercase text-vitreous">
+          <div className="flex items-center gap-2.5">
+            <span className="rounded-full border border-border px-3 py-1 font-mono text-meta font-medium uppercase text-secondary">
               {c.category}
             </span>
             <span
-              className={`rounded-full border border-line bg-mist px-2.5 py-1 text-meta font-medium uppercase ${
-                c.difficulty === "Easy"
-                  ? "text-fluorescein-ink"
-                  : c.difficulty === "Hard"
-                    ? "text-hyphema"
-                    : "text-cobalt"
-              }`}
+              className={`rounded-full px-3 py-1 font-mono text-meta font-medium uppercase ${difficultyPill}`}
             >
               {c.difficulty}
             </span>
@@ -77,14 +81,14 @@ export default function Game() {
           />
         </div>
 
-        <ol className="flex flex-col gap-5" aria-label="Case findings">
+        <ol className="flex flex-col divide-y divide-border" aria-label="Case findings">
           {c.clues.map((clue, i) => (
             <ClueCard key={i} text={clue} revealed={i < cluesShown} isVignette={i === 0} />
           ))}
         </ol>
 
         {state.status === "playing" ? (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <GuessInput onSubmit={submitGuess} attempt={state.guesses.length + 1} caseData={c} />
             <GuessHistory guesses={state.guesses} />
           </div>
@@ -93,7 +97,7 @@ export default function Game() {
         )}
       </div>
 
-      <p className="border-t border-line px-6 py-3 text-center text-[11px] text-vitreous sm:px-8">
+      <p className="border-t border-border px-8 py-4 text-center text-xs text-muted sm:px-10">
         For medical education only. This is not medical advice.
       </p>
     </div>
